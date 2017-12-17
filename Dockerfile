@@ -1,6 +1,6 @@
 FROM frolvlad/alpine-glibc
 
-ENV DOCKER_COMPOSE_VERSION=1.18.0-rc1
+ENV DOCKER_COMPOSE_VERSION=1.18.0-rc2
 
 ENV URL=https://github.com/docker/compose/releases/download/
 

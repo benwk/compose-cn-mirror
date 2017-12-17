@@ -15,8 +15,7 @@
 ```bash
 $ docker create \
      --name=docker-compose-cn-mirror \
-     ccr.ccs.tencentyun.com/khs1994/docker-compose-cn-mirror \
-     sh
+     ccr.ccs.tencentyun.com/khs1994/docker-compose-cn-mirror:1.17.1
 
 $ docker cp docker-compose-cn-mirror:/docker-compose .
 
