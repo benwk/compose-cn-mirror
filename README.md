@@ -10,7 +10,7 @@
 
 [![GitHub (pre-)release](https://img.shields.io/github/release/khs1994-docker/compose-cn-mirror/all.svg)](https://github.com/khs1994-docker/compose-cn-mirror/releases)
 
-[![GitHub (pre-)release](https://img.shields.io/github/release/khs1994-docker/compose-cn-mirror.svg)](https://github.com/khs1994-docker/compose-cn-mirror/releases)
+[![GitHub release](https://img.shields.io/github/release/khs1994-docker/compose-cn-mirror.svg)](https://github.com/khs1994-docker/compose-cn-mirror/releases)
 
 ## Download
 
