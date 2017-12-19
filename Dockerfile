@@ -1,6 +1,6 @@
 FROM frolvlad/alpine-glibc
 
-ENV DOCKER_COMPOSE_VERSION=1.18.0-rc2
+ENV DOCKER_COMPOSE_VERSION=1.18.0
 
 ENV URL=https://github.com/docker/compose/releases/download/
 
@@ -37,6 +37,6 @@ RUN apk add --no-cache --virtual .build-deps \
       && COMMIT=`cat version.txt` \
       && git commit -m "${COMMIT}" \
       && git remote add aliyun git@code.aliyun.com:khs1994-docker/compose-cn-mirror.git \
-      && git push -f aliyun master:dev \
+      && git push -f aliyun master \
       && apk del .build-deps \
       && rm -rf ~/.ssh .git* .ssh *.sh Dockerfile
