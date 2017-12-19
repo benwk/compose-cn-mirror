@@ -1,5 +1,7 @@
 FROM frolvlad/alpine-glibc
 
+ENV PROJECT_NAME=docker-compose
+
 ENV DOCKER_COMPOSE_VERSION=1.18.0
 
 ENV URL=https://github.com/docker/compose/releases/download/
@@ -24,11 +26,13 @@ RUN apk add --no-cache --virtual .build-deps \
       && chmod 600 ~/.ssh/id_rsa \
       && git config --global user.name "khs1994-merge-robot" \
       && git config --global user.email "ai@khs1994.com" \
-      && git clone git@github.com:khs1994-docker/compose-cn-mirror.git /docker-compose \
-      && cd /docker-compose \
-      && curl -L ${URL}${DOCKER_COMPOSE_VERSION}/docker-compose-Linux-x86_64 > docker-compose-Linux-x86_64 \
-      && curl -L ${URL}${DOCKER_COMPOSE_VERSION}/docker-compose-Darwin-x86_64 > docker-compose-Darwin-x86_64 \
-      && curl -L ${URL}${DOCKER_COMPOSE_VERSION}/docker-compose-Windows-x86_64.exe > docker-compose-Windows-x86_64.exe \
+      # 以上为配置 git
+      && git clone git@github.com:khs1994-docker/compose-cn-mirror.git /${PROJECT_NAME} \
+      # 切换到项目目录
+      && cd /${PROJECT_NAME} \
+      && curl -LO ${URL}${DOCKER_COMPOSE_VERSION}/docker-compose-Linux-x86_64 \
+      && curl -LO ${URL}${DOCKER_COMPOSE_VERSION}/docker-compose-Darwin-x86_64 \
+      && curl -LO ${URL}${DOCKER_COMPOSE_VERSION}/docker-compose-Windows-x86_64.exe \
       && chmod +x docker-compose-* \
       && ./docker-compose-`uname -s`-`uname -m` --version > version.txt \
       && date > build_date.txt \
@@ -38,5 +42,14 @@ RUN apk add --no-cache --virtual .build-deps \
       && git commit -m "${COMMIT}" \
       && git remote add aliyun git@code.aliyun.com:khs1994-docker/compose-cn-mirror.git \
       && git push -f aliyun master \
+      # 删除敏感数据、依赖
       && apk del .build-deps \
-      && rm -rf ~/.ssh .git* .ssh *.sh Dockerfile
+      && rm -rf ~/.ssh .git* .ssh *.sh Dockerfile \
+      # 打包文件
+      && cd / \
+      && tar -zcvf ${PROJECT_NAME}.tar.gz /${PROJECT_NAME} \
+      && rm -rf /${PROJECT_NAME}
+
+# FROM scratch
+#
+# COPY --from=0 /docker-compose.tar.gz /docker-compose.tar.gz
