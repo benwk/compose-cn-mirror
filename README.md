@@ -43,5 +43,5 @@ $ chmod +x docker-compose-`uname -s`-`uname -m`
 
 $ ./docker-compose-`uname -s`-`uname -m` --version
 
-$ sudo mv docker-compose-`uname -s`-`uname -m` /usr/local/bin
+$ sudo mv docker-compose-`uname -s`-`uname -m` /usr/local/bin/docker-compose
 ```
