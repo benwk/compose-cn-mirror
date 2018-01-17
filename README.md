@@ -14,6 +14,12 @@
 
 ## Download
 
+### 从浏览器下载
+
+https://code.aliyun.com/khs1994-docker/compose-cn-mirror/tree/master
+
+通过左上角切换标签，来下载特定的版本。
+
 ### By Docker
 
 ```bash
